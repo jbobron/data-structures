@@ -26,7 +26,6 @@ var extend = function(obj){
 
 queueMethods = {};
 
-
 queueMethods.enqueue = function(value){
   this.storage[this.counter] = value;
   this.counter++;
