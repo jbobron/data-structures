@@ -2,8 +2,12 @@ var Queue = function(){
   // Hey! Rewrite in the new style. Your code will wind up looking very similar,
   // but try not not reference your old code in writing the new style.
   var obj = {};
-  obj.counter = 0
-  return extend(obj, Queue.queueMethods);
+  obj.counter = 0;
+  obj.storage = {};
+  obj.value;
+
+
+  return extend(obj, queueMethods);
 };
 
 
@@ -20,21 +24,30 @@ var extend = function(obj){
 };
 
 
-Queue.queueMethods = {};
+queueMethods = {};
 
 
-Queue.queueMethods.enqueue = function(value){
-  //obj[counter] = value;
-
+queueMethods.enqueue = function(value){
+  this.storage[this.counter] = value;
+  this.counter++;
 };
 
-Queue.queueMethods.dequeue = function() {
+queueMethods.dequeue = function() {
+  if ( this.counter > 0 ) {
+    this.value = this.storage[0];
 
+    for ( var i = this.counter-1; i > 0; i-- ) {
+      this.storage[i-1] = this.storage[i];
+    }
 
+    delete this.storage[this.counter-1];
+    this.counter--;
+    return this.value;
+  }
 };
 
 
-Queue.queueMethods.size = function() {
+queueMethods.size = function() {
   return this.counter;
 }
 
