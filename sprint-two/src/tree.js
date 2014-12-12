@@ -1,12 +1,12 @@
 var Tree = function(value){
-  var newTree = Object.create(treeMethods);
+  var newTree = {};
   newTree.value = value;
 
   // your code here
 
-  //newTree.children = null;  // fix me
+  newTree.children = [];  // fix me
 
-  return newTree;
+  return _.extend( newTree, treeMethods );
 };
 
 
@@ -16,11 +16,44 @@ var Tree = function(value){
 var treeMethods = {};
 
 treeMethods.addChild = function(value){
-
+  var newTree = Tree(value);
+  this.children.push(newTree);
 };
 
 treeMethods.contains = function(target){
+  var result = false;
 
+
+  var checkChild = function(node) {
+      //check top node with if
+    console.log("this.value: ", node.value, "target:", target);
+    if ( node.value === target ) {
+      result = true;
+      return result;
+    }
+
+
+
+
+
+  //   for ( var i = 0; i < this.children.length; i++ ) {
+
+  //     if ( this.children[i].value === target ) {
+  //       // console.log('value:', this.children[i].value, ", target: ", target );
+  //       result = true;
+  //       return result;
+  //     } else if ( this.children[i].children.length !== 0 ) {
+  //       //call recursion
+  //       checkChild(this.children[i]);
+
+  //     }else{
+  //       return result;
+  //     }
+  //   }
+  }
+  return checkChild(this);
+  // return result;
+  //this.children
 };
 
 
