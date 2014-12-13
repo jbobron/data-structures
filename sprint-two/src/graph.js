@@ -1,7 +1,7 @@
 
 
 var Graph = function(){
-
+  var nodes = {};
 
 };
 
@@ -11,7 +11,7 @@ Graph.prototype.addNode = function(node){
   var obj = {};
   obj.node = node;
   obj.edges = [];
-  this[node] = obj;
+  this.nodes[node] = obj;
 
 };
 
@@ -51,16 +51,16 @@ Graph.prototype.hasEdge = function(fromNode, toNode){
 };
 
 Graph.prototype.addEdge = function(fromNode, toNode){
-  //console.log("outer this: ", this);
-  var fromLookup = ""+fromNode;
-  var toLookup = ""+toNode;
-  if(this.contains(fromLookup) && this.contains(toLookup)){
-    //console.log(this);
-    this[fromLookup].edges.push(this[toLookup]);
-    this[toLookup].edges.push(this[fromLookup]);
-    console.log(this[fromLookup]);
+  // //console.log("outer this: ", this);
+  // var fromLookup = ""+fromNode;
+  // var toLookup = ""+toNode;
+  // if(this.contains(fromLookup) && this.contains(toLookup)){
+  //   //console.log(this);
+  //   this[fromLookup].edges.push(this[toLookup]);
+  //   this[toLookup].edges.push(this[fromLookup]);
+  //   console.log(this[fromLookup]);
 
-  }
+  // }
 };
 
 Graph.prototype.removeEdge = function(fromNode, toNode){
@@ -68,11 +68,10 @@ Graph.prototype.removeEdge = function(fromNode, toNode){
 };
 
 Graph.prototype.forEachNode = function(cb){
-  console.log('thiz:', this);
+
   for (var key in this) {
-    if (Object.hasOwnProperty(key)) {
       cb(this[key]);
-    }
+
   }
   // var keyz = Object.keys(this);
   // var thiz = this;
