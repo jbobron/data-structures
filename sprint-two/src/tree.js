@@ -16,47 +16,64 @@ var Tree = function(value){
 var treeMethods = {};
 
 treeMethods.addChild = function(value){
-  var newTree = Tree(value);
-  this.children.push(newTree);
+  //var child = newTree;
+  //child.value = value;
+
+  var child = Tree(value);
+  this.children.push(child);
 };
 
 treeMethods.contains = function(target){
-  var result = false;
+  var counter = 0;
 
+  var checkChild = function(node){
 
-  var checkChild = function(node) {
-      //check top node with if
-    console.log("this.value: ", node.value, "target:", target);
+    counter++;
+    console.log('Checkchild has run', counter);
+
     if ( node.value === target ) {
-      result = true;
-      return result;
+      console.log("value: ", node.value, "target: ", target);
+      return true;
+    }
+    else if ( node.children.length !== 0 ) {
+      for ( var i = 0; i < node.children.length; i++ ) {
+
+        if( checkChild(node.children[i]) ){
+          return true;
+        }
+
+      }
+      return false;
+
+    } else {
+      return false;
     }
 
-
-
-
-
-  //   for ( var i = 0; i < this.children.length; i++ ) {
-
-  //     if ( this.children[i].value === target ) {
-  //       // console.log('value:', this.children[i].value, ", target: ", target );
-  //       result = true;
-  //       return result;
-  //     } else if ( this.children[i].children.length !== 0 ) {
-  //       //call recursion
-  //       checkChild(this.children[i]);
-
-  //     }else{
-  //       return result;
-  //     }
-  //   }
   }
+  //implement false case
   return checkChild(this);
-  // return result;
-  //this.children
 };
 
 
 /*
  * Complexity: What is the time complexity of the above functions?
  */
+
+
+ // var checkChild = function(node){
+ //      if(node.value === target){
+ //        return true;
+ //      }
+ //      else if(node.children.length > 0){
+ //      if(node.value === target){
+ //        return true;
+ //      }
+ //      else{
+ //        for( var i = 0; i < node.children.length; i++ ){
+ //          checkChild(node.children[i]);
+ //        }
+ //      }
+ //    }
+ //  }
+ //  //implement false case
+ //  return checkChild(this);
