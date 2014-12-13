@@ -24,22 +24,28 @@ Graph.prototype.removeNode = function(node){
 };
 
 Graph.prototype.hasEdge = function(fromNode, toNode){
-  var fromLookup = ""+fromNode;
-  var toLookup = ""+toNode;
-  var result = false;
-  if(this.contains(fromLookup) && this.contains(toLookup)){
-    // console.log('this[toLookup].edges: ', this[toLookup].edges);
-    if(this[fromLookup].edges.length > 0){
-      //_.each(this[fromLookup].edges, function(v, i){
-      for(var i = 0; i < this[fromLookup].edges.length; i++){
-        if(this[toLookup].edges[i] === this[fromLookup]) {
-          result = true;
-        }
-      }
-      //});
-    }
-    return result;
-  }
+
+
+
+
+  // var fromLookup = ""+fromNode;
+  // var toLookup = ""+toNode;
+  // if(this.contains(fromLookup) && this.contains(toLookup)){
+  //   // console.log('this[toLookup].edges: ', this[toLookup].edges);
+  //   if(this[fromLookup].edges.length > 0) {
+  //     //_.each(this[fromLookup].edges, function(v, i){
+  //     for(var i = 0; i < this[fromLookup].edges.length; i++){
+  //       console.log('this[toLookup].edges[i]', this[toLookup].edges[i]);
+  //       console.log('this[fromLookup]', this[fromLookup]);
+  //       if( this[fromLookup].edges[i] ) {
+
+  //         return true;
+  //       }
+  //     }
+  //     //});
+  //   }
+  //   return false;
+  // }
 
 
 };
@@ -50,9 +56,9 @@ Graph.prototype.addEdge = function(fromNode, toNode){
   var toLookup = ""+toNode;
   if(this.contains(fromLookup) && this.contains(toLookup)){
     //console.log(this);
-    console.log(this[fromLookup]);
     this[fromLookup].edges.push(this[toLookup]);
     this[toLookup].edges.push(this[fromLookup]);
+    console.log(this[fromLookup]);
 
   }
 };
@@ -62,10 +68,10 @@ Graph.prototype.removeEdge = function(fromNode, toNode){
 };
 
 Graph.prototype.forEachNode = function(cb){
-
+  console.log('thiz:', this);
   for (var key in this) {
-    if (Object.hasOwnProperty) {
-      cb(key);
+    if (Object.hasOwnProperty(key)) {
+      cb(this[key]);
     }
   }
   // var keyz = Object.keys(this);
