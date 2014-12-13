@@ -47,7 +47,6 @@ var LinkedList = function(){
             return results;
           }
           else{
-            console.log(node.next);
             if(node.next){
               traverseNodes(node.next);
             }

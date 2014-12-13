@@ -24,15 +24,13 @@ treeMethods.addChild = function(value){
 };
 
 treeMethods.contains = function(target){
-  var counter = 0;
+
 
   var checkChild = function(node){
 
-    counter++;
-    console.log('Checkchild has run', counter);
+
 
     if ( node.value === target ) {
-      console.log("value: ", node.value, "target: ", target);
       return true;
     }
     else if ( node.children.length !== 0 ) {
