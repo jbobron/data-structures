@@ -11,16 +11,10 @@
 //   limitedArray.set(3, 'hi');
 //   limitedArray.get(3); // returns 'hi'
 
-// Constructor that creates an instance of a limited array
 var LimitedArray = function(limit){
   var storage = [];
-  for(var i = 0; i < limit; i++){
-    storage.push([]);
-  }
-
 
   var limitedArray = {};
-  //index will be return value from get index (needs to be below limit) for key
   limitedArray.get = function(index){
     checkLimit(index);
     return storage[index];
