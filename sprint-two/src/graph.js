@@ -1,20 +1,16 @@
-
-
 var Graph = function(){
-  this.nodes = {};
+  this.nodes = {}
 };
-
 Graph.prototype.addNode = function(node){
 
   var obj = {};
   obj.node = node;
-  obj.edges = [];
+  obj.edges = {};
   this.nodes[node] = obj;
-
 };
 
 Graph.prototype.contains = function(node){
-  return this.nodes[node] ? true: false;
+  return this.nodes[node] ? true : false;
 };
 
 Graph.prototype.removeNode = function(node){
@@ -22,14 +18,13 @@ Graph.prototype.removeNode = function(node){
 };
 
 Graph.prototype.hasEdge = function(fromNode, toNode){
-  if ( this.contains(fromNode) && this.contains(toNode) ) {
-    if ( this.nodes[fromNode].edges[toNode]  ) {
+  if(this.contains(fromNode) && this.contains(toNode)){
+    if(this.nodes[fromNode].edges[toNode]){
       return true;
-    } else {
+    }else{
       return false;
     }
   }
-
 };
 
 Graph.prototype.addEdge = function(fromNode, toNode){
@@ -46,29 +41,4 @@ Graph.prototype.forEachNode = function(cb){
   for (var node in this.nodes) {
     cb(node);
   }
-};
-
-/*
- * Complexity: What is the time complexity of the above functions?
- */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}

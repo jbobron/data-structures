@@ -1,77 +1,36 @@
 var Tree = function(value){
-  var newTree = {};
-  newTree.value = value;
+  var myTree = {};
+  myTree.value = value;
+  myTree.children = [];
 
-  // your code here
+  _.extend(myTree, treeMethods);
 
-  newTree.children = [];  // fix me
-
-  return _.extend( newTree, treeMethods );
+  return myTree;
 };
-
-
-
-
 
 var treeMethods = {};
 
 treeMethods.addChild = function(value){
-  //var child = newTree;
-  //child.value = value;
+  this.children.push(new Tree(value));
 
-  var child = Tree(value);
-  this.children.push(child);
 };
 
 treeMethods.contains = function(target){
-
-
-  var checkChild = function(node){
-
-
-
-    if ( node.value === target ) {
-      return true;
+	result = false;
+  var recurse = function(node){
+    if(target === node.value){
+      result = true;
+      return;
     }
-    else if ( node.children.length !== 0 ) {
-      for ( var i = 0; i < node.children.length; i++ ) {
-
-        if( checkChild(node.children[i]) ){
-          return true;
-        }
-
-      }
-      return false;
-
-    } else {
-      return false;
+    for(var i = 0; i < node.children.length; i++){
+      recurse(node.children[i]);
     }
-
   }
-  //implement false case
-  return checkChild(this);
+  recurse(this);
+  return result;
 };
 
 
 /*
  * Complexity: What is the time complexity of the above functions?
  */
-
-
- // var checkChild = function(node){
- //      if(node.value === target){
- //        return true;
- //      }
- //      else if(node.children.length > 0){
- //      if(node.value === target){
- //        return true;
- //      }
- //      else{
- //        for( var i = 0; i < node.children.length; i++ ){
- //          checkChild(node.children[i]);
- //        }
- //      }
- //    }
- //  }
- //  //implement false case
- //  return checkChild(this);
